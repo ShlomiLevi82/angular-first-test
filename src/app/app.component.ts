@@ -1,10 +1,31 @@
 import { Component } from '@angular/core';
-
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { HousingLocation } from './housinglocation';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  standalone: true,
+  imports: [HomeComponent, RouterModule],
+  template: `
+    <main>
+      <a [routerLink]="['/']">
+        <header class="brand-name">
+          <img
+            class="brand-logo"
+            src="/assets/logo.svg"
+            alt="logo"
+            aria-hidden="true"
+          />
+        </header>
+      </a>
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
+    </main>
+  `,
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-tour-of-heroes';
+  title = 'homes';
+  filteredLocationList: HousingLocation[] = [];
 }
